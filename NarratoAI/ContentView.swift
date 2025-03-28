@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import NarratoUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
@@ -42,6 +43,11 @@ struct ContentView: View {
         } detail: {
             Text("Select an item")
         }
+        
+        ButtonView {
+            print("Press Button")
+        }
+        
     }
 
     private func addItem() {

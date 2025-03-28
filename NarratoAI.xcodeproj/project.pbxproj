@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5AA2ED252D969CE800F80A40 /* NarratoUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5AA2ED242D969CE800F80A40 /* NarratoUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		5AA2EB892D964DCA00F80A40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		5AA2EB752D964DC900F80A40 /* NarratoAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarratoAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA2EB882D964DCA00F80A40 /* NarratoAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NarratoAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA2EB922D964DCA00F80A40 /* NarratoAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NarratoAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AA2ED222D969CAE00F80A40 /* NarratoUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NarratoUI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AA2ED252D969CE800F80A40 /* NarratoUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,9 +81,11 @@
 		5AA2EB6C2D964DC900F80A40 = {
 			isa = PBXGroup;
 			children = (
+				5AA2ED222D969CAE00F80A40 /* NarratoUI */,
 				5AA2EB772D964DC900F80A40 /* NarratoAI */,
 				5AA2EB8B2D964DCA00F80A40 /* NarratoAITests */,
 				5AA2EB952D964DCA00F80A40 /* NarratoAIUITests */,
+				5AA2ED232D969CE800F80A40 /* Frameworks */,
 				5AA2EB762D964DC900F80A40 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +98,13 @@
 				5AA2EB922D964DCA00F80A40 /* NarratoAIUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5AA2ED232D969CE800F80A40 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +127,7 @@
 			);
 			name = NarratoAI;
 			packageProductDependencies = (
+				5AA2ED242D969CE800F80A40 /* NarratoUI */,
 			);
 			productName = NarratoAI;
 			productReference = 5AA2EB752D964DC900F80A40 /* NarratoAI.app */;
@@ -583,6 +599,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5AA2ED242D969CE800F80A40 /* NarratoUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NarratoUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5AA2EB6D2D964DC900F80A40 /* Project object */;
 }
