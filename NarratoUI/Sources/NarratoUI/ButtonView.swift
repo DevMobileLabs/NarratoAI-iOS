@@ -2,11 +2,10 @@
 //  SwiftUIView.swift
 //  NarratoUI
 //
-//  Created by Kain Nguyen on 28/3/25.
+//  Created by Kain Nguyen on 31/3/25.
 //
 
 import SwiftUI
-import Foundation
 
 public struct ButtonView: View {
     
@@ -14,18 +13,18 @@ public struct ButtonView: View {
         self.action = action
     }
     
-    var action: () -> Void
-    
+    public var action: () -> Void
 
     public var body: some View {
-        VStack {
-            Text("NarratoUI")
+        Button {
+            action()
+        } label: {
+            Text("Text View")
         }
+
     }
-    
 }
 
-
 #Preview {
-    ButtonView(action: {})
+    ButtonView {}
 }

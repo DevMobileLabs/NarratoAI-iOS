@@ -28,10 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A56CCF62D9A8B97004AE804 /* NarratoUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NarratoUI; sourceTree = "<group>"; };
 		5AA2EB752D964DC900F80A40 /* NarratoAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarratoAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA2EB882D964DCA00F80A40 /* NarratoAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NarratoAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA2EB922D964DCA00F80A40 /* NarratoAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NarratoAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5AA2ED222D969CAE00F80A40 /* NarratoUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NarratoUI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -81,7 +81,7 @@
 		5AA2EB6C2D964DC900F80A40 = {
 			isa = PBXGroup;
 			children = (
-				5AA2ED222D969CAE00F80A40 /* NarratoUI */,
+				5A56CCF62D9A8B97004AE804 /* NarratoUI */,
 				5AA2EB772D964DC900F80A40 /* NarratoAI */,
 				5AA2EB8B2D964DCA00F80A40 /* NarratoAITests */,
 				5AA2EB952D964DCA00F80A40 /* NarratoAIUITests */,
