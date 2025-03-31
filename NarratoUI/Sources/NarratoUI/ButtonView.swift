@@ -8,18 +8,20 @@
 import SwiftUI
 
 public struct ButtonView: View {
-    
-    public init(action: @escaping () -> Void) {
+
+    public init(action: @escaping () -> Void, title: String = "") {
         self.action = action
+        self.title = title
     }
-    
+
     public var action: () -> Void
+    public var title = ""
 
     public var body: some View {
         Button {
             action()
         } label: {
-            Text("Text View")
+            Text(title)
         }
 
     }
