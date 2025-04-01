@@ -56,22 +56,15 @@ class AuthCoordinator: Hashable {
     }
 
     private func loginView() -> some View {
-        let loginView = LoginView(
-            output:
-                .init(
-                    goToMainScreen: {
-                        self.output?.goToMainScreen()
-                    },
-                    goToForgotPassword: {
-                        self.push(
-                            AuthCoordinator(
-                                page: .forgotPassword,
-                                navigationPath: self.$navigationPath
-                            )
-                        )
-                    }
-                )
-        )
+        let loginViewModel = LoginViewModel(
+                onLoginSuccess: {
+                    self.output?.goToMainScreen()
+                },
+                onForgotPassword: {
+                    self.forgotPasswordView()
+                }
+            )
+        let loginView = LoginView(viewModel: loginViewModel)
         return loginView
     }
 

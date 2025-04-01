@@ -10,23 +10,29 @@ import SwiftData
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var appCoordinator: AppFlowCoordinator
+    @StateObject private var appCoordinator = AppFlowCoordinator(path: NavigationPath())
 
     var body: some View {
-        Group {
-            AuthCoordinator(
-                page: .login,
-                navigationPath: $appCoordinator.path,
-                output: .init(
-                    goToMainScreen: {
-                        print("Go to main screen (MainTabView)")
-                    }
-                )
-            ).view()
+        NavigationStack(path: $appCoordinator.path) {
+            appCoordinator.build()
+                .navigationDestination(for: HomeFlowCoordinator.self) {
+                    coordinator in
+                    coordinator.build()
+                }
+                .navigationDestination(for: SettingsFlowCoordinator.self) {
+                    coordinator in
+                    coordinator.build()
+                }
+                .navigationDestination(for: ProfileFlowCoordinator.self) {
+                    coordinator in
+                    coordinator.build()
+                }
         }
+        .environmentObject(appCoordinator)
     }
 }
 
 #Preview {
     MainView()
+        .environmentObject(AppFlowCoordinator(path: NavigationPath()))
 }

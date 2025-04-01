@@ -5,56 +5,72 @@
 //  Created by Kain Nguyen on 28/3/25.
 //
 
-import Foundation
+import Combine
 import SwiftUI
-
-enum AppPage {
-    case auth
-    case home
-}
 
 class AppFlowCoordinator: ObservableObject {
     @Published var path: NavigationPath
-    @Published var appPage: AppPage = .auth
+    private var cancellables = Set<AnyCancellable>()
 
     init(path: NavigationPath) {
         self.path = path
     }
 
     @ViewBuilder
-    func view() -> some View {
-        switch appPage {
-        case .auth:
-            authCoordinator().view()
-        case .home:
-            homeCoordinator().view()
-        }
+    func build() -> some View {
+        buildHomeFlow()
     }
 
-    func authCoordinator() -> AuthCoordinator {
-        return AuthCoordinator(
-            page: .login,
-            navigationPath: Binding(
-                get: { self.path },
-                set: { self.path = $0 }
-            ),
-            output: .init(goToMainScreen: {
-                self.appPage = .home
-            })
-        )
+    private func push<T: Hashable>(_ coordinator: T) {
+        path.append(coordinator)
     }
 
+    // MARK: Flow Control Methods
+    private func buildHomeFlow() -> some View {
+        let homeCoordinator = HomeFlowCoordinator(page: .main)
+        bind(homeCoordinator: homeCoordinator)
+        return homeCoordinator.build()
+    }
 
+    private func settingsFlow() {
+        let settingsFlowCoordinator = SettingsFlowCoordinator(page: .main)
+        self.bind(settingsCoordinator: settingsFlowCoordinator)
+        self.push(settingsFlowCoordinator)
+    }
 
-    func homeCoordinator() -> HomeCoordinator {
-        return HomeCoordinator(
-            navigationPath: Binding(
-                get: { self.path },
-                set: { self.path = $0 }
-            ),
-            output: .init(logout: {
-                self.appPage = .auth
+    private func profileFlow() {
+        let profileFlowCoordinator = ProfileFlowCoordinator(page: .main)
+        self.bind(profileCoordinator: profileFlowCoordinator)
+        self.push(profileFlowCoordinator)
+    }
+
+    // MARK: Flow Coordinator Bindings
+
+    // Update the bind(homeCoordinator:) method
+    private func bind(homeCoordinator: HomeFlowCoordinator) {
+        homeCoordinator.pushCoordinator
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] coordinator in
+                    self?.push(coordinator)
             })
-        )
+            .store(in: &cancellables)
+    }
+    
+    private func bind(settingsCoordinator: SettingsFlowCoordinator) {
+        settingsCoordinator.pushCoordinator
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] coordinator in
+                self?.push(coordinator)
+            })
+            .store(in: &cancellables)
+    }
+
+    private func bind(profileCoordinator: ProfileFlowCoordinator) {
+        profileCoordinator.pushCoordinator
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] coordinator in
+                self?.push(coordinator)
+            })
+            .store(in: &cancellables)
     }
 }

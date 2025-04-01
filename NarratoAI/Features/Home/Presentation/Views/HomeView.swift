@@ -5,32 +5,29 @@
 //  Created by Kain Nguyen on 31/3/25.
 //
 
+import Combine
 import SwiftUI
 
 struct HomeView: View {
-
-    var output: Output
-
-    struct Output {
-        var logout: () -> Void
-    }
+    let didClickMenuItem = PassthroughSubject<String, Never>()
+    @State var menuItems = ["Settings", "Profile"]
 
     var body: some View {
-        VStack {
-            Text("Home Screen")
-                .font(.largeTitle)
-
-            Button("Logout") {
-                output.logout()
+        NavigationView {
+            List {
+                ForEach(menuItems, id: \.self) { item in
+                    Button(action: {
+                        didClickMenuItem.send(item)
+                    }) {
+                        Text(item)
+                    }
+                }
             }
-            .buttonStyle(.borderedProminent)
+            .navigationBarTitle("MVVMC DEMO")
         }
     }
 }
 
 #Preview {
-    HomeView(
-        output: .init(logout: {
-
-        }))
+    HomeView()
 }

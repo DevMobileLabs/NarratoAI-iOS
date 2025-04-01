@@ -5,33 +5,39 @@
 //  Created by Kain Nguyen on 31/3/25.
 //
 
-import SwiftUI
 import NarratoUI
+import SwiftUI
 
 struct LoginView: View {
-    // In MVVM the Output will be located in the ViewModel
-    
-    struct Output {
-        var goToMainScreen: () -> Void
-        var goToForgotPassword: () -> Void
-    }
-
-    var output: Output
+    @StateObject var viewModel: LoginViewModel
 
     var body: some View {
-        
-        ButtonView(action: {
-            self.output.goToMainScreen()
-        }, title: "Login")
-        .padding()
-        
-        ButtonView(action: {
-            self.output.goToForgotPassword()
-        }, title: "Forgot Password")
-        .padding()
+        VStack {
+            ButtonView(
+                action: {
+                    viewModel.login()
+                }, title: "Login"
+            )
+            .padding()
+
+            ButtonView(
+                action: {
+                    viewModel.forgotPassword()
+                }, title: "Forgot Password"
+            )
+            .padding()
+        }
+        .onAppear {
+            viewModel.onLoginSuccess = {
+                // Điều hướng đến màn hình chính
+            }
+            viewModel.onForgotPassword = {
+                // Điều hướng đến màn hình quên mật khẩu
+            }
+        }
     }
 }
 
 #Preview {
-    LoginView(output: .init(goToMainScreen: {}, goToForgotPassword: {}))
+    LoginView(viewModel: LoginViewModel())
 }
